@@ -1,0 +1,139 @@
+﻿implement main
+    open core, stdio, file
+
+domains
+    product_id = integer.
+    product_name = string.
+    category = string.
+    name = string.
+    phone_number = string.
+    quantity = integer.
+    date = string.
+
+class facts - shopDb
+    product : (product_id, product_name, category, integer).
+    customer : (name, phone_number).
+    purchase : (phone_number, product_id, quantity, date).
+    sum : (integer) determ.
+    count_customers : (integer) determ.
+
+class predicates
+    product_and_category : (product_name Товар, category Категория) nondeterm anyflow.
+clauses
+    product_and_category(X, Y) :-
+        product(_, X, Y, _).
+
+class predicates
+    product_price : (product_name Товар, integer Цена) nondeterm anyflow.
+clauses
+    product_price(X, Y) :-
+        product(_, X, _, Y).
+
+class predicates
+    date_of_purchase : (product_name Товар, date Дата) nondeterm anyflow.
+clauses
+    date_of_purchase(X, Y) :-
+        purchase(_, D, _, Y),
+        product(D, X, _, _).
+
+class predicates
+    quantity_of_products : (product_name Товар, quantity Количество) nondeterm anyflow.
+clauses
+    quantity_of_products(X, Y) :-
+        product(Z, X, _, _),
+        purchase(_, D, Y, _).
+
+class predicates
+    basket_of_customer : (name Имя, product_name Товар) nondeterm anyflow.
+clauses
+    basket_of_customer(X, Y) :-
+        customer(X, Z),
+        purchase(Z, D, _, _),
+        product(D, Y, _, _).
+
+class predicates
+    summa_pokupok : (name Имя, integer [out]) determ anyflow.
+clauses
+    summa_pokupok(X, Y) :-
+        assert(sum(0)),
+        customer(X, Phone),
+        purchase(Phone, Id, Quantity, _),
+        product(Id, _, _, Price),
+        retract(sum(Total)),
+        Sum = Total + Price * Quantity,
+        asserta(sum(Sum)),
+        fail.
+    summa_pokupok(X, Y) :-
+        retract(sum(Y)).
+
+class predicates
+    counter_customers : (integer) determ anyflow.
+clauses
+    counter_customers(Res) :-
+        assert(count_customers(0)),
+        customer(_, _),
+        retract(count_customers(Total)),
+        Res = Total + 1,
+        asserta(count_customers(Res)),
+        fail.
+    counter_customers(Res) :-
+        retract(count_customers(Res)).
+
+class predicates
+    avg_check : (real) determ anyflow.
+clauses
+    avg_check(Res) :-
+        assert(sum(0)),
+        purchase(_, ID, Quantity, _),
+        product(ID, _, _, Price),
+        retract(sum(Total)),
+        Sum = Total + Price * Quantity,
+        asserta(sum(Sum)),
+        fail.
+    avg_check(Res) :-
+        retract(sum(Sum)),
+        counter_customers(Count),
+        Res = Sum / Count.
+
+clauses
+    run() :-
+        consult("../db.txt", shopDb),
+        fail.
+
+    run() :-
+        nl,
+        avg_check(Res),
+        write("Средний чек: ", Res),
+        nl,
+        fail.
+
+    run() :-
+        nl,
+        counter_customers(Res),
+        write("Количество покупателей: ", Res),
+        nl,
+        fail.
+
+    run() :-
+        nl,
+        write("Корзина покупок, Тимура:\n"),
+        basket_of_customer("Timur", Y),
+        product_price(Y, Z),
+        write(Y, " - ", Z, " rubley"),
+        nl,
+        fail.
+
+    run() :-
+        nl,
+        write("Категория продукта:\n"),
+        summa_pokupok("Timur", Y),
+        write("Timur", ": ", Y, " rubley"),
+        nl,
+        fail.
+
+    run().
+
+end implement main
+
+goal
+    console::runUtf8(main::run).

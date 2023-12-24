@@ -1,0 +1,68 @@
+product(1,"Milk","Dairy Products",100).
+product(2,"Cottage Cheese","Dairy Products",55).
+product(3,"Shrimp","Seafood",500).
+product(5,"Potatoes","Vegetables",100).
+product(6,"Tomatoes","Vegetables",140).
+product(7,"Pumpkin","Vegetables", 220).
+product(8,"Banana","Fruit",120).
+product(9,"Hazelnuts","Nuts",190).
+product(10,"Almonds","Nuts",210).
+product(11,"Bun","Muffin",45).	
+product(12,"Cherry puff","Muffin",55).
+product(13,"Bread","Muffin",55).
+product(14,"Pike","Fish",355).
+product(15,"Sea Bass","Fish",255).
+product(16,"Crucian carp","Fish",205).
+product(20,"Watermelon","Berries",25).
+product(21,"Strawberries","Berries",270).
+product(22,"Raspberry","Berries",235).
+product(23,"Pink salmon","Fish",555).
+
+
+customer("Almaz","79170759060").
+customer("Gleb","79185456623").
+customer("Timur","79014567656").
+customer("Yusuf","79120047683").
+customer("Bulat","79842423348").
+customer("Anton","79049935467").
+customer("Sergey","79064354354").
+customer("Dmitry","79127587983").
+customer("Vladimir","79053053453").
+customer("Oleg","79456493496").
+customer("Alexander","79124582958").
+customer("Nikita","79244142958").
+customer("Oleg","79324582966").
+customer("Rosa","79424512918").
+customer("Ilnur","71224512918").
+customer("Anatoly","79004533918").
+customer("Marat","73024513718").
+customer("Tanya","72724517838").
+
+
+purchase("79170759060",2,2,"08.02.2023").
+purchase("79185456623",1,1,"10.03.2023").
+purchase("79014567656",5,3,"01.01.2023").
+purchase("79049935467",3,4,"13.02.2022").
+purchase("79127587983",4,1,"21.09.2022").
+purchase("79842423348",6,3,"23.12.2022").
+purchase("79053053453",7,5,"11.03.2022").
+purchase("79014567656",8,1,"12.12.2022").
+purchase("79124582958",9,1,"14.05.2022").
+purchase("79120047683",10,3,"09.04.2023").
+purchase("79842423348",11,2,"02.08.2023").
+purchase("79170759060",6,4,"11.01.2023").
+purchase("79456493496",7,5,"18.03.2023").
+purchase("79185456623",8,4,"10.01.2023").
+purchase("79170759060",6,2,"23.09.2023").
+purchase("79014567656",4,1,"14.07.2023").
+purchase("79456493496",3,4,"19.06.2023").
+purchase("79014567656",7,2,"25.02.2023").
+purchase("79049935467",5,1,"17.05.2023").
+purchase("79064354354",1,3,"21.04.2023").
+purchase("72724512783",2,3,"23.03.2023").
+purchase("73024513718",4,3,"12.10.2023").
+purchase("79004533918",18,3,"14.11.2023").
+purchase("71224512918",20,3,"04.03.2023").
+purchase("79064354354",21,3,"30.01.2023").
+purchase("79424512918",22,3,"10.02.2023").
+purchase("79244142958",23,3,"08.06.2023").
